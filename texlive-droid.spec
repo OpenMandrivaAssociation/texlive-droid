@@ -1,3 +1,9 @@
+# revision 23912
+# category Package
+# catalog-ctan /fonts/droid
+# catalog-date 2011-09-12 10:00:04 +0200
+# catalog-license lppl1.3
+# catalog-version 2.1
 Name:		texlive-droid
 Version:	2.1
 Release:	1
@@ -602,6 +608,7 @@ fonts, available for purchase from the Ascender foundry.
 %doc %{_texmfdistdir}/source/fonts/droid/droidsansmono-drv.tex
 %doc %{_texmfdistdir}/source/fonts/droid/droidserif-drv.tex
 %doc %{_texmfdistdir}/source/fonts/droid/ttf2type1.pe
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -612,3 +619,5 @@ fonts, available for purchase from the Ascender foundry.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar fonts tex doc source %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
