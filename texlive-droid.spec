@@ -18,9 +18,6 @@ BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
 Requires(post):	texlive-kpathsea
-Conflicts:	texlive-texmf <= 20110705-3
-Conflicts:	texlive-doc <= 20110705-3
-Conflicts:	texlive-source <= 20110705-3
 
 %description
 The Droid typeface family was designed in the fall of 2006 by
@@ -34,20 +31,12 @@ The bundle includes the fonts in both TrueType and Adobe Type 1
 formats. The package does not support the Droid Pro family of
 fonts, available for purchase from the Ascender foundry.
 
-%pre
-    %_texmf_mktexlsr_pre
-
 %post
-    %_texmf_mktexlsr_post
-
-%preun
-    if [ $1 -eq 0 ]; then
-	%_texmf_mktexlsr_pre
-    fi
+    %{_sbindir}/texlive.post
 
 %postun
     if [ $1 -eq 0 ]; then
-	%_texmf_mktexlsr_post
+	%{_sbindir}/texlive.post
     fi
 
 #-----------------------------------------------------------------------
@@ -609,7 +598,6 @@ fonts, available for purchase from the Ascender foundry.
 %doc %{_texmfdistdir}/source/fonts/droid/droidsansmono-drv.tex
 %doc %{_texmfdistdir}/source/fonts/droid/droidserif-drv.tex
 %doc %{_texmfdistdir}/source/fonts/droid/ttf2type1.pe
-%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -620,5 +608,3 @@ fonts, available for purchase from the Ascender foundry.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar fonts tex doc source %{buildroot}%{_texmfdistdir}
-mkdir -p %{buildroot}%{_tlpkgobjdir}
-cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
