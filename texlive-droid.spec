@@ -6,7 +6,7 @@
 # catalog-version 2.1
 Name:		texlive-droid
 Version:	2.1
-Release:	1
+Release:	2
 Summary:	LaTeX support for the Droid font families
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/droid
