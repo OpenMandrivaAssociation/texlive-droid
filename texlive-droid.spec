@@ -1,6 +1,6 @@
 Name:		texlive-droid
 Version:	54512
-Release:	1
+Release:	2
 Summary:	LaTeX support for the Droid font families
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/fonts/droid
