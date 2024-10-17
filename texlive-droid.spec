@@ -3,7 +3,7 @@ Version:	54512
 Release:	2
 Summary:	LaTeX support for the Droid font families
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/fonts/droid
+URL:		https://www.ctan.org/tex-archive/fonts/droid
 License:	LPPL1.3
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.doc.r%{version}.tar.xz
