@@ -1,54 +1,30 @@
-Name:		texlive-droid
-Version:	54512
-Release:	2
+%global tl_name droid
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	3.2
+Release:	%{tl_revision}.1
 Summary:	LaTeX support for the Droid font families
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/fonts/droid
-License:	LPPL1.3
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.doc.r%{version}.tar.xz
+License:	lppl1.3c apache2
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The Droid typeface family was designed in the fall of 2006 by
-Steve Matteson, as a commission from Google to create a set of
-system fonts for its Android platform. The goal was to provide
-optimal quality and comfort on a mobile handset when rendered
-in application menus, web browsers and for other screen text.
-The Droid family consists of Droid Serif, Droid Sans and Droid
-Sans Mono fonts, licensed under the Apache License Version 2.0.
-The bundle includes the fonts in both TrueType and Adobe Type 1
-formats. The package does not support the Droid Pro family of
-fonts, available for purchase from the Ascender foundry.
+The Droid typeface family was designed in the fall of 2006 by Steve
+Matteson, as a commission from Google to create a set of system fonts
+for its Android platform. The goal was to provide optimal quality and
+comfort on a mobile handset when rendered in application menus, web
+browsers and for other screen text. The Droid family consists of Droid
+Serif, Droid Sans and Droid Sans Mono fonts, licensed under the Apache
+License Version 2.0. The bundle includes the fonts in both TrueType and
+Adobe Type 1 formats. The package does not support the Droid Pro family
+of fonts, available for purchase from the Ascender foundry.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/fonts/enc/dvips/droid
-%{_texmfdistdir}/fonts/map/dvips/droid
-%{_texmfdistdir}/fonts/tfm/ascender/droid
-%{_texmfdistdir}/fonts/truetype/ascender/droid
-%{_texmfdistdir}/fonts/type1/ascender/droid
-%{_texmfdistdir}/fonts/vf/ascender/droid
-%{_texmfdistdir}/tex/latex/droid
-%doc %{_texmfdistdir}/doc/fonts/droid
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar fonts tex doc %{buildroot}%{_texmfdistdir}
