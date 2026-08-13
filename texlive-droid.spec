@@ -1,9 +1,10 @@
 %global tl_name droid
 %global tl_revision 77682
+%global tl_version 3.2
 
 Name:		texlive-%{tl_name}
 Epoch:		1
-Version:	3.2
+Version:	%{tl_version}
 Release:	%{tl_revision}.1
 Summary:	LaTeX support for the Droid font families
 Group:		Publishing
@@ -13,7 +14,8 @@ Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.r%{tl_revi
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/droid.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
 BuildSystem:	texlive
-Provides:	texlive(%{tl_name}) = %{tl_revision}
+Requires:	texlive-tlpkg
+Provides:	texlive(%{tl_name}) = %{version}
 
 %description
 The Droid typeface family was designed in the fall of 2006 by Steve
@@ -26,3 +28,12 @@ License Version 2.0. The bundle includes the fonts in both TrueType and
 Adobe Type 1 formats. The package does not support the Droid Pro family
 of fonts, available for purchase from the Ascender foundry.
 
+
+%install -a
+mkdir -p %{buildroot}%{_texmf_updmap_d}
+cat > %{buildroot}%{_texmf_updmap_d}/%{tl_name} <<'TL_DROPIN_EOF'
+# from droid:
+Map droidsans.map
+Map droidsansmono.map
+Map droidserif.map
+TL_DROPIN_EOF
